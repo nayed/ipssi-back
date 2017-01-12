@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < ApiController
   include Knock::Authenticable
-  before_action :authenticate_user, except: [:index]
+  before_action :authenticate_user, except: [:index, :show]
   
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
