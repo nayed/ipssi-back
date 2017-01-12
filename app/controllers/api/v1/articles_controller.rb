@@ -1,4 +1,7 @@
 class Api::V1::ArticlesController < ApiController
+  include Knock::Authenticable
+  before_action :authenticate_user
+  
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
