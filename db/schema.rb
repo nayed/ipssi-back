@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112105640) do
+ActiveRecord::Schema.define(version: 20170210064528) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -19,6 +19,52 @@ ActiveRecord::Schema.define(version: 20170112105640) do
     t.text     "content"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "cvs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "moreInfos"
+    t.boolean  "askForEditionComment"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "cv_id"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.string   "location"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["cv_id"], name: "index_experiences_on_cv_id"
+  end
+
+  create_table "formations", force: :cascade do |t|
+    t.integer  "cv_id"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.string   "location"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["cv_id"], name: "index_formations_on_cv_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer  "cv_id"
+    t.string   "title"
+    t.string   "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_skills_on_cv_id"
   end
 
   create_table "users", force: :cascade do |t|
